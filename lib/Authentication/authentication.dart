@@ -17,7 +17,7 @@ class AuthService {
       } else if (e.code == 'email-already-in-use') {
         return 'The account already exists for that email.';
       } else {
-        return e.message;
+        return e.message.toString();
       }
     } catch (e) {
       return e.toString();

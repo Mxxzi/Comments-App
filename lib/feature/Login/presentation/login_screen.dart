@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   final form = _key.currentState;
-                  if (form != null && !form.validate()) {
+                  if ( _key.currentState!.validate()) {
                     final message = await AuthService().login(
                       email: _emailController.text,
                       password: _passwordController.text,
@@ -116,8 +116,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (message == 'Success') {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (ctx) => const HomeScreen()),
+                        MaterialPageRoute(
+                          builder: (ctx) => const HomeScreen(),
+                        ),
                       );
+                      _emailController.clear();
+                      _passwordController.clear();
                     } else if (message != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -128,8 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     log('not valid');
                   }
-                  _emailController.clear();
-                  _passwordController.clear();
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff0C54BE)),

@@ -1,5 +1,3 @@
-
-
 import 'package:comments_app/Authentication/authentication.dart';
 import 'package:comments_app/feature/Login/presentation/home_screen.dart';
 import 'package:comments_app/feature/Login/presentation/login_screen.dart';
@@ -124,16 +122,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   final form = _key.currentState;
-                  if (form != null && !form.validate()) {
+                  if (_key.currentState!.validate()) {
                     try {
-                      final message = await AuthService().login(
+                      final message = await AuthService().registration(
                         email: _emailController.text,
                         password: _passwordController.text,
                       );
 
                       if (message == 'Success') {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (ctx) => HomeScreen()));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => HomeScreen(),
+                          ),
+                        );
+                        _emailController.clear();
+                        _passwordController.clear();
+                        _nameController.clear();
                       }
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -143,9 +148,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       );
                     }
                   }
-                  _emailController.clear();
-                  _passwordController.clear();
-                  _nameController.clear();
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff0C54BE)),
