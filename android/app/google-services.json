@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "647893167745",
+    "firebase_url": "https://comments-da8f7-default-rtdb.firebaseio.com",
+    "project_id": "comments-da8f7",
+    "storage_bucket": "comments-da8f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647893167745:android:7bcb777e1323f0de456780",
+        "android_client_info": {
+          "package_name": "com.example.comments_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuT6Ix7-DCR-UZ_bXheZZ_sYaG3A6zM2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
