@@ -1,21 +1,21 @@
 import 'package:comments_app/Authentication/authentication.dart';
 import 'package:comments_app/feature/Login/presentation/home_screen.dart';
 import 'package:comments_app/feature/Login/presentation/login_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ElevatedButton(
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
-                  final form = _key.currentState;
                   if (_key.currentState!.validate()) {
                     try {
                       final message = await AuthService().registration(

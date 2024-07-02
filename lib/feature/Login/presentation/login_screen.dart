@@ -4,8 +4,6 @@ import 'package:comments_app/Authentication/authentication.dart';
 import 'package:comments_app/Services/AuthenticationServices.dart';
 import 'package:comments_app/feature/Login/presentation/home_screen.dart';
 import 'package:comments_app/feature/Login/presentation/sign_up_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
@@ -24,10 +22,7 @@ TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _emailHasError = false;
-  bool _passwordHasError = false;
-  final _firebaseAuth = FirebaseAuth.instance;
-  User? get currentUser => _firebaseAuth.currentUser;
+
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +101,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
-                  final form = _key.currentState;
                   if ( _key.currentState!.validate()) {
                     final message = await AuthService().login(
                       email: _emailController.text,
@@ -125,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (message != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(message ?? 'Something went wrong!'),
+                          content: Text(message),
                         ),
                       );
                     }
@@ -149,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (ctx) => RegistrationScreen()),
+                              builder: (ctx) => const RegistrationScreen()),
                         );
                       },
                       child: const Text('Signup')),
